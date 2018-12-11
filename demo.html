@@ -10,15 +10,35 @@
 
 	<script>
 		
+		let d;
+		let path;
+		let tracingPoints;
+
 		function setup() {
 
 			createCanvas(512, 512);
+
+			d = "M 100,400 L 100,100 400,100 C 100,100 100,400 400,400";
+			path = new Path(d);
+			tracingPoints = path.tracingPoints;
+
+			noFill();
+			stroke(255);
+			strokeWeight(2);
 
 		}
 
 		function draw() {
 
 			background(25);
+
+			beginShape();
+			for (let i = 0; i < tracingPoints.length; i++) {
+				vertex(tracingPoints[i].x, tracingPoints[i].y);
+			}
+			endShape();
+
+			noLoop();
 
 		}
 
